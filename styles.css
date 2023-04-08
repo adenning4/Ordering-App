@@ -83,4 +83,6 @@ main {
 .order-summary {
   height: 400px;
   padding: 50px;
+  text-align: center;
+  font-size: 28px;
 }
