@@ -79,3 +79,8 @@ main {
   height: 50px;
   background: #16db994f;
 }
+
+.order-summary {
+  height: 400px;
+  padding: 50px;
+}

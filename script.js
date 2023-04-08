@@ -1,8 +1,9 @@
 import { menuArray } from "./data.js";
 
-const menu = document.getElementById("menu");
+renderMenu();
 
 function renderMenu() {
+  const menu = document.getElementById("menu");
   let menuHtml = ``;
   menuArray.forEach((item) => {
     menuHtml += `
@@ -20,5 +21,3 @@ function renderMenu() {
 
   menu.innerHTML = menuHtml;
 }
-
-renderMenu();
