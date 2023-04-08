@@ -1,0 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Smythe", cursive;
+}
+
+header {
+  background-image: url(./hamburger.jpg);
+  background-size: cover;
+  background-position: top -150px right 0px;
+  margin: 0 auto;
+  padding: 40px 0 0 50px;
+  width: 600px;
+  height: 160px;
+  color: #ffffff;
+}
+
+.restauraunt-title {
+  font-size: 39px;
+}
+
+.restauraunt-description {
+  font-size: 22px;
+}
