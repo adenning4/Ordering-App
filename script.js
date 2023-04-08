@@ -28,6 +28,9 @@ function clickListener(e) {
   if (e.target.dataset.addbutton) {
     addMenuItem(Number(e.target.dataset.addbutton));
   }
+  if (e.target.dataset.removebutton) {
+    removeMenuItem(Number(e.target.dataset.removebutton));
+  }
 }
 
 function addMenuItem(buttonId) {
@@ -38,16 +41,23 @@ function addMenuItem(buttonId) {
   renderOrderSummary();
 }
 
+function removeMenuItem(buttonId) {
+  const menuItem = getMenuItem(buttonId);
+  const removeIndex = orderSummaryArray.findIndex((item) => item === menuItem);
+  orderSummaryArray.splice(removeIndex, 1);
+  renderOrderSummary();
+}
+
 function getMenuItem(buttonId) {
   return menuArray.filter((item) => item.id === buttonId)[0];
 }
 
 function renderOrderSummary() {
+  const orderSummaryEl = document.getElementById("order-summary");
   if (orderSummaryArray.length) {
-    const orderSummaryDetailsEl = document.getElementById(
-      "order-summary-details"
-    );
     let orderSummaryDetailsHtml = ``;
+    let totalPrice = 0;
+
     orderSummaryArray.forEach((item) => {
       orderSummaryDetailsHtml += `
         <div class="order-summary-item">
@@ -57,10 +67,25 @@ function renderOrderSummary() {
               data-removebutton="${item.id}">
               remove
             </button>
+            <div class="order-summary-item-price">$${item.price}</div>
           </div>
-          <div class="order-summary-item-price">${item.price}</div>
         `;
+
+      totalPrice += item.price;
     });
-    orderSummaryDetailsEl.innerHTML = orderSummaryDetailsHtml;
+
+    const orderSummaryHtml = `
+    <p>Your Order</p>
+    <div class="order-summary-details" id="order-summary-details">
+        ${orderSummaryDetailsHtml}
+        <div class="order-summary-item order-summary-total">
+            <div class="order-summary-item-name">Total Price:</div>
+            <div class="order-summary-item-price">$${totalPrice}</div>
+        </div>
+    </div>`;
+
+    orderSummaryEl.innerHTML = orderSummaryHtml;
+  } else {
+    orderSummaryEl.innerHTML = ``;
   }
 }
