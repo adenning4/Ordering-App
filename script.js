@@ -1,11 +1,13 @@
 import { menuArray, orderSummaryArray } from "./data.js";
 
+const userName = document.getElementById("user-name");
+const userCard = document.getElementById("user-card");
+const userCcv = document.getElementById("user-ccv");
+const orderSummaryEl = document.getElementById("order-summary");
+
 renderMenu();
 
 document.addEventListener("click", clickListener);
-document.getElementById("pay-btn").addEventListener("click", function (e) {
-  e.preventDefault();
-});
 
 function renderMenu() {
   const menuEl = document.getElementById("menu");
@@ -19,7 +21,7 @@ function renderMenu() {
             <p class="menu-item-ingredients">${item.ingredients}</p>
             <p class="menu-item-price">$${item.price}</p>
         </div>
-        <button class="add-button" data-addbutton="${item.id}">+</button>
+        <button class="add-button order-btn" data-addbutton="${item.id}">+</button>
     </div>
         `;
   });
@@ -33,10 +35,33 @@ function clickListener(e) {
   } else if (e.target.dataset.removebutton) {
     removeMenuItem(Number(e.target.dataset.removebutton));
   } else if (e.target.id === "complete-order-btn") {
-    openPayDetails();
+    openPayModal();
   } else if (e.target.id === "pay-btn") {
+    e.preventDefault();
     submitPayDetails();
+  } else if (e.target.id === "edit-btn") {
+    e.preventDefault();
+    closePayModal();
+  } else if (e.target.id === "new-order-btn") {
+    closePayModal();
+    orderSummaryEl.innerHTML = ``;
   }
+}
+
+function openPayModal() {
+  document.getElementById("pay-modal").style.display = "flex";
+  document.querySelectorAll(`button.order-btn`).forEach((button) => {
+    button.disabled = true;
+    button.style.display = "none";
+  });
+}
+
+function closePayModal() {
+  document.getElementById("pay-modal").style.display = "none";
+  document.querySelectorAll(`button.order-btn`).forEach((button) => {
+    button.disabled = false;
+    button.style.display = "block";
+  });
 }
 
 function addMenuItem(buttonId) {
@@ -69,7 +94,7 @@ function renderOrderSummary() {
         <div class="order-summary-item">
             <div class="order-summary-item-name">${item.name}</div>
             <button
-              class="order-summary-remove-item"
+              class="order-summary-remove-item order-btn"
               data-removebutton="${item.id}">
               remove
             </button>
@@ -97,26 +122,26 @@ function renderOrderSummary() {
   }
 }
 
-function openPayDetails() {
-  document.getElementById("pay-modal").style.display = "flex";
-}
-
 function submitPayDetails() {
-  const userName = document.getElementById("user-name").value;
-  const userCard = document.getElementById("user-card").value;
-  const userCcv = document.getElementById("user-ccv").value;
-  if (userName && userCard && userCcv) {
+  if (userName.value && userCard.value && userCcv.value) {
     document.getElementById("pay-modal").style.display = "none";
-    renderOrderStatus(userName);
+    renderOrderStatus(userName.value);
+    clearInputs();
   }
 }
 
 function renderOrderStatus(userName) {
-  const orderSummaryEl = document.getElementById("order-summary");
-  const orderStatusHtml = `
+  orderSummaryEl.innerHTML = `
     <div class='order-status'>
     Thanks, ${userName}! Your order is on its way!
     </div>
+    <button class='new-order-btn' id='new-order-btn'>New Order</button>
     `;
-  orderSummaryEl.innerHTML = orderStatusHtml;
+}
+
+function clearInputs() {
+  orderSummaryArray.length = 0;
+  userName.value = ``;
+  userCard.value = ``;
+  userCcv.value = ``;
 }

@@ -68,7 +68,7 @@ main {
   margin-top: 14px;
 }
 
-button:hover {
+.order-btn:hover {
   cursor: pointer;
 }
 
@@ -131,7 +131,8 @@ button:hover {
   padding-top: 20px;
 }
 
-.complete-order-btn {
+.complete-order-btn,
+.new-order-btn {
   margin-top: 50px;
   color: #ffffff;
   font-size: 16px;
@@ -146,7 +147,7 @@ button:hover {
 
 .pay-modal {
   display: none;
-  height: 500px;
+  height: 540px;
   width: 500px;
   background: #ffffff;
   box-shadow: 0 0 80px 20px black;
@@ -181,16 +182,15 @@ button:hover {
   font-size: 20px;
 }
 
-.pay-btn {
-  margin-top: auto;
+.pay-btn,
+.edit-btn {
+  margin: 0;
 }
 
-.inactive {
-  background: #16db9963;
-}
-
-.inactive:hover {
-  cursor: default;
+.edit-btn,
+.new-order-btn {
+  background: #707070;
+  color: whitesmoke;
 }
 
 .order-status {
@@ -199,4 +199,11 @@ button:hover {
   font-size: 32px;
   width: 100%;
   padding: 40px;
+}
+.pay-btn-inactive {
+  background: #16db9963;
+}
+
+.pay-btn-inactive:hover {
+  cursor: default;
 }
