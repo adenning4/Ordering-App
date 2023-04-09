@@ -3,6 +3,9 @@ import { menuArray, orderSummaryArray } from "./data.js";
 renderMenu();
 
 document.addEventListener("click", clickListener);
+document.getElementById("pay-btn").addEventListener("click", function (e) {
+  e.preventDefault();
+});
 
 function renderMenu() {
   const menuEl = document.getElementById("menu");
@@ -27,9 +30,12 @@ function renderMenu() {
 function clickListener(e) {
   if (e.target.dataset.addbutton) {
     addMenuItem(Number(e.target.dataset.addbutton));
-  }
-  if (e.target.dataset.removebutton) {
+  } else if (e.target.dataset.removebutton) {
     removeMenuItem(Number(e.target.dataset.removebutton));
+  } else if (e.target.id === "complete-order-btn") {
+    openPayDetails();
+  } else if (e.target.id === "pay-btn") {
+    submitPayDetails();
   }
 }
 
@@ -82,10 +88,35 @@ function renderOrderSummary() {
             <div class="order-summary-item-name">Total Price:</div>
             <div class="order-summary-item-price">$${totalPrice}</div>
         </div>
-    </div>`;
+    </div>
+    <button class='complete-order-btn' id='complete-order-btn'>Complete order<button>`;
 
     orderSummaryEl.innerHTML = orderSummaryHtml;
   } else {
     orderSummaryEl.innerHTML = ``;
   }
+}
+
+function openPayDetails() {
+  document.getElementById("pay-modal").style.display = "flex";
+}
+
+function submitPayDetails() {
+  const userName = document.getElementById("user-name").value;
+  const userCard = document.getElementById("user-card").value;
+  const userCcv = document.getElementById("user-ccv").value;
+  if (userName && userCard && userCcv) {
+    document.getElementById("pay-modal").style.display = "none";
+    renderOrderStatus(userName);
+  }
+}
+
+function renderOrderStatus(userName) {
+  const orderSummaryEl = document.getElementById("order-summary");
+  const orderStatusHtml = `
+    <div class='order-status'>
+    Thanks, ${userName}! Your order is on its way!
+    </div>
+    `;
+  orderSummaryEl.innerHTML = orderStatusHtml;
 }

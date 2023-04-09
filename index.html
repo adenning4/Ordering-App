@@ -25,6 +25,33 @@
       <div class="menu" id="menu"></div>
       <div class="order-summary" id="order-summary"></div>
     </main>
+    <div class="pay-modal hidden" id="pay-modal">
+      <form class="card-details-form">
+        <p class="pay-modal-title">Enter card details</p>
+        <input
+          required
+          type="text"
+          class="card-details-input"
+          placeholder="Enter your name"
+          id="user-name"
+        />
+        <input
+          required
+          type="text"
+          class="card-details-input"
+          placeholder="Enter card number"
+          id="user-card"
+        />
+        <input
+          required
+          type="text"
+          class="card-details-input"
+          placeholder="Enter CCV"
+          id="user-ccv"
+        />
+        <button class="complete-order-btn pay-btn" id="pay-btn">Pay</button>
+      </form>
+    </div>
     <script src="./script.js" type="module"></script>
   </body>
 </html>

@@ -130,3 +130,73 @@ button:hover {
   border-top: 1px solid black;
   padding-top: 20px;
 }
+
+.complete-order-btn {
+  margin-top: 50px;
+  color: #ffffff;
+  font-size: 16px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+  background: #16db99;
+  border: none;
+  border-radius: 3px;
+  width: 100%;
+  padding: 18px;
+}
+
+.pay-modal {
+  display: none;
+  height: 500px;
+  width: 500px;
+  background: #ffffff;
+  box-shadow: 0 0 80px 20px black;
+  border-radius: 3px;
+  margin: auto;
+  padding: 30px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+}
+
+.card-details-form {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  gap: 25px;
+  width: 100%;
+}
+
+.pay-modal-title {
+  font-size: 24px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.card-details-input {
+  padding: 15px;
+  font-size: 20px;
+}
+
+.pay-btn {
+  margin-top: auto;
+}
+
+.inactive {
+  background: #16db9963;
+}
+
+.inactive:hover {
+  cursor: default;
+}
+
+.order-status {
+  color: #065f46;
+  background: #ecfdf5;
+  font-size: 32px;
+  width: 100%;
+  padding: 40px;
+}
