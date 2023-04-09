@@ -37,7 +37,6 @@ function clickListener(e) {
   } else if (e.target.id === "complete-order-btn") {
     openPayModal();
   } else if (e.target.id === "pay-btn") {
-    e.preventDefault();
     submitPayDetails();
   } else if (e.target.id === "edit-btn") {
     e.preventDefault();
